@@ -7,6 +7,12 @@ int getID(){
 	return (PID);
 }
 
+void serverHandler(){
+
+}
+
 int main(){
-	printf("%d", getID());
+	
+	printf("The server PID is: %d", getID());
+	
 }
