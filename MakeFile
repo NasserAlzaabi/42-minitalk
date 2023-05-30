@@ -1,23 +1,32 @@
 SRC = server.c minitalkutils.c client.c\
-		
+
+CLIENT = client.c
+
+SERVER = server.c
+
+CLIENT_NAME = client
+
+SERVER_NAME = server
+
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
-NAME = minitalk.a
+#NAME = minitalk.a
 
 CFLAGS = -Wall -Werror -Wextra
 
-all: $(NAME)
+all: $(CLIENT_NAME) $(SERVER_NAME)
 
-$(NAME): $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
-
+$(SERVER_NAME) : $(SERVER) $(OBJ)
+	$(CC) $(CFLAGS) minitalkutils.c $(SERVER) -o $(SERVER_NAME)
+$(CLIENT_NAME) : $(CLIENT) $(OBJ)
+	$(CC) $(CFLAGS) minitalkutils.c $(CLIENT) -o $(CLIENT_NAME)
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(SERVER_NAME) $(CLIENT_NAME)
 
 re: fclean all
 
