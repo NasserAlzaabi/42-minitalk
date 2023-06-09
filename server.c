@@ -12,7 +12,8 @@ void serverHandler(int sig)
 		i = 0;
 	}
 	if (sig == SIGUSR1){
-		byte = ((byte + 1) >> 1);
+		byte++;
+		byte = (byte >> 1);
 		i++;
 		//printf("recieved 1\n");
 	}
@@ -22,6 +23,13 @@ void serverHandler(int sig)
 		//printf("recieved 0\n");
 	}
 	printf("%d\n", byte);
+}
+
+char bittochar(){
+	char result;
+
+	result = 'A';
+	return (result);
 }
 
 int main(){
