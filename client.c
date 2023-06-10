@@ -8,20 +8,22 @@ void chartobit(char *c, int pid){
 	int j;
 	int i;
 
-	i = 7;
+	
 	j = 0;
-	while(c[j]){
-		
+	while(c[j] != '\0'){
+		i = 7;
 		while (i >= 0){
-			if ((c[j] & (1 << i))){
+			if ((c[j] & (1 << i))){ //sends extra sig1 signal after all bit info has been sent.
 				kill(pid, SIGUSR1);
 				usleep(300);
+				printf("1");
 			}
 			else{
 				kill(pid, SIGUSR2);
 				usleep(300);
+				printf("0");
 			}
-			printf("%d", i);
+			// printf("%d", i);
 			i--;
 		}
 		
