@@ -10,23 +10,30 @@ void serverHandler(int sig)
 		byte++;
 		if (i != 7)
 			byte = (byte << 1);
-		else 
-			// printf("\n\nFF %d: %c\n\n", byte, (char)byte); //tests if end value correct
+		else {
+			// printf("\n\nFF %d: %c\n\n", byte, (char)byte);
+			ft_putchar_fd(byte, 1);
+			byte = 0;
+			i = -1;
+		}
+			
 		i++;
 	}
 	else if (sig == SIGUSR2){
 		// printf("0\n");
 		if (i != 7)
 			byte = byte << 1;
+		else{
+			// printf("\n\nFF %d: %c\n\n", byte, (char)byte);
+			ft_putchar_fd(byte, 1);
+			byte = 0;
+			i = -1;
+		}
 		i++;
 	}
-	if (i >= 8){
-		// printf("\nFinal: %d\n", byte);
-		printf("%c\n", byte);
-		// ft_putchar_fd(byte, 1);
-		byte = 0;
-		i = 0;
-	}
+	// if (i == 8){
+		
+	// }
 	
 }
 
