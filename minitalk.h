@@ -12,5 +12,6 @@
 void 	bittochar(int byte);
 void	ft_putchar_fd(char c, int fd);
 int	ft_atoi(const char *str);
+int	ft_putnbr(int nb);
 
 #endif

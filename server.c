@@ -5,7 +5,7 @@ void serverHandler(int sig)
 	static char byte;
 	static int i;
 	
-	if (sig == SIGUSR1){
+	if (sig == SIGUSR1){ //might need usleep server side
 		// printf("1\n"); //prints one extra time after we get correct bit value. gets 1 extra "1" signal from client even though client stores correct bits. results in shift that ruins next char bit values.
 		byte++;
 		if (i != 7)
@@ -41,10 +41,12 @@ int main(){
 	int PID;
 
 	PID = getpid();
-	printf("The server PID is: %d\n", PID);
+	write(1, "The server PID is: ", 20);
+	ft_putnbr(PID);
+	write(1, "\n", 2);
+	signal(SIGUSR1, serverHandler);
+	signal(SIGUSR2, serverHandler);
 	while(1){
-		signal(SIGUSR1, serverHandler);
-		signal(SIGUSR2, serverHandler);
 		pause();
 	}
 	return 0;

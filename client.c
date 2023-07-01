@@ -14,12 +14,12 @@ void chartobit(char *c, int pid){
 		while (i >= 0){
 			if ((c[j] & (1 << i))){
 				kill(pid, SIGUSR1);
-				usleep(200);
+				usleep(350);
 				// printf("1");
 			}
 			else{
 				kill(pid, SIGUSR2);
-				usleep(200);
+				usleep(350);
 				// printf("0");
 			}
 			// printf("%d", i);
@@ -34,13 +34,18 @@ void chartobit(char *c, int pid){
 }
 
 int main(int argc, char** argv){ //argv[1] is PID input argv[2] is string input
+	int pid;
 	
-	
+	pid = ft_atoi(argv[1]);
+	if (pid < 0){
+		write(1, "invalid PID\n", 13);
+		exit(0);
+	}
 	if (argc == 3){
-		chartobit(argv[2], ft_atoi(argv[1]));
+		chartobit(argv[2], pid);
 	}
 	else
-		printf("Wrong number of arguments!");
+		write(1, "Wrong number of arguments!", 27);
 
 	return 0;
 }

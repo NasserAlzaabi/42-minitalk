@@ -10,7 +10,7 @@ SERVER_NAME = server
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc
+CC = cc
 
 #NAME = minitalk.a
 
